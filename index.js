@@ -4,6 +4,7 @@ const generateMarkdown = require("./utils/generateMarkdown");
 const api = require("./utils/api.js");
 const util = require("util");
 
+// Questions to user for prompt
 const questions = [
   {
     type: "input",
@@ -86,7 +87,7 @@ const questions = [
   },
 ];
 
-
+// function for writing file.
 function writeToFile(fileName, data) {
   fs.writeFile(fileName, data, (err) => {
     if (err) {
@@ -98,6 +99,7 @@ function writeToFile(fileName, data) {
 
 const writeFileAsync = util.promisify(writeToFile);
 
+// Function for initialization
 async function init() {
   try {
     const userResponses = await inquirer.prompt(questions);

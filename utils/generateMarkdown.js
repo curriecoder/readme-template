@@ -1,5 +1,5 @@
 
-
+// Function for creating markdown text.
 function generateMarkdown(userResponses, userInfo) {
   let draftToC = `## Table of Contents`;
 
@@ -41,7 +41,7 @@ function generateMarkdown(userResponses, userInfo) {
   * [License](#license)`;
   
 
-  // Optional Installation section
+  // Optional sections
   if (userResponses.install !== '') {
   
   writeMarkDown +=
@@ -60,9 +60,7 @@ function generateMarkdown(userResponses, userInfo) {
   
   writeMarkDown +=
   
-  `
-  
-  ## Usage 
+  `## Usage 
   
   *Instructions and examples for use:*
   
@@ -72,9 +70,8 @@ function generateMarkdown(userResponses, userInfo) {
   
   // Optional Contributing section
   if (userResponses.contributing !== "") {
-    `
   
-  ## Contributing
+  `## Contributing
   
   *If you would like to contribute it, you can follow these guidelines for how to do so.*
   
@@ -82,13 +79,11 @@ function generateMarkdown(userResponses, userInfo) {
   };
   
 
-  // Optional Tests section
+  // Optional tests section
   if (userResponses.tests !== '') {
   
   writeMarkDown +=
-  `
-  
-  ## Tests
+  `## Tests
   
   *Tests for application and how to run them:*
   
@@ -98,15 +93,12 @@ function generateMarkdown(userResponses, userInfo) {
 
   // License section is required
   writeMarkDown +=
-  `
+  `## License
   
-  ## License
-  
-  ${userResponses.license}
-  `;
+  ${userResponses.license}`;
 
 
-  // Questions / About Developer section
+  // Questions
   let draftDev = 
   `
   ---
@@ -117,16 +109,13 @@ function generateMarkdown(userResponses, userInfo) {
   
   For any questions, contact me:
  
-  GitHub: [@${userInfo.login}](${userInfo.url})
-  `;
+  GitHub: [@${userInfo.login}](${userInfo.url})`;
 
   // If GitHub email is not null, add to Developer section
   if (userInfo.email !== null) {
   
   draftDev +=
-  `
-  Email: ${userInfo.email}
-  `};
+  `Email: ${userInfo.email}`};
 
   // Add developer section to markdown
   writeMarkDown += draftDev;
@@ -135,5 +124,5 @@ function generateMarkdown(userResponses, userInfo) {
   return writeMarkDown;
   
 }
-
+// Export function.
 module.exports = generateMarkdown;

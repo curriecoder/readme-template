@@ -1,5 +1,6 @@
 const axios = require("axios");
 
+// Handling GitHub api call with user input.
 const api = {
   async getUser(userResponses) {
     try {
