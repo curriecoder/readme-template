@@ -3,7 +3,7 @@
 function generateMarkdown(userResponses, userInfo) {
   let draftToC = `## Table of Contents`;
 
-  if (userResponses.installation !== "") {
+  if (userResponses.install !== "") {
     draftToC += `
   * [Installation](#installation)`;
   }
@@ -13,7 +13,7 @@ function generateMarkdown(userResponses, userInfo) {
   * [Usage](#usage)`;
   }
 
-  if (userResponses.contributing !== "") {
+  if (userResponses.contributors !== "") {
     draftToC += `
   * [Contributing](#contributing)`;
   }
@@ -28,29 +28,112 @@ function generateMarkdown(userResponses, userInfo) {
   Check out the badges hosted by [shields.io](https://shields.io/).
   
   ## Description 
-  
   # ${userResponses.description}
+  
 
-  # ${userResponses.contents}
+  `
 
-  # ${userResponses.install}
+  // Add Table of Contents to markdown
+  writeMarkDown += draftToC;
+ 
+  // Add License section since License is required to Table of Contents
+  writeMarkDown += `
+  * [License](#license)`;
   
-  # ${userResponses.instructions}
+
+  // Optional Installation section
+  if (userResponses.install !== '') {
   
-  # ${userResponses.collaborators}
+  writeMarkDown +=
+  `
   
-  # ${userResponses.license}
+  ## Installation
   
-  # ${userResponses.badges}
+  *Steps required to install project and how to get the development environment running:*
   
-  # ${userResponses.features}
+  ${userResponses.install}`
+  };
   
-  # ${userResponses.contributors}
+
+  // Optional Usage section
+  if (userResponses.usage !== '') {
   
-  # ${userResponses.tests}
+  writeMarkDown +=
   
-  # ${userResponses.questions}
-`;
+  `
+  
+  ## Usage 
+  
+  *Instructions and examples for use:*
+  
+  ${userResponses.usage}`
+  };
+  
+  
+  // Optional Contributing section
+  if (userResponses.contributors !== '') {
+  `
+  
+  ## Contributing
+  
+  *If you would like to contribute it, you can follow these guidelines for how to do so.*
+  
+  ${userResponses.contributors}`
+  };
+  
+
+  // Optional Tests section
+  if (userResponses.tests !== '') {
+  
+  writeMarkDown +=
+  `
+  
+  ## Tests
+  
+  *Tests for application and how to run them:*
+  
+  ${userResponses.tests}`
+  };
+
+
+  // License section is required
+  writeMarkDown +=
+  `
+  
+  ## License
+  
+  ${userResponses.license}
+  `;
+
+
+  // Questions / About Developer section
+  let draftDev = 
+  `
+  ---
+  
+  ## Questions?
+  
+  ![Developer Profile Picture](${userInfo.avatar_url}) 
+  
+  For any questions, contact me:
+ 
+  GitHub: [@${userInfo.login}](${userInfo.url})
+  `;
+
+  // If GitHub email is not null, add to Developer section
+  if (userInfo.email !== null) {
+  
+  draftDev +=
+  `
+  Email: ${userInfo.email}
+  `};
+
+  // Add developer section to markdown
+  writeMarkDown += draftDev;
+
+  // Return markdown
+  return writeMarkDown;
+  
 }
 
 module.exports = generateMarkdown;
