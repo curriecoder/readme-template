@@ -2,6 +2,7 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const generateMarkdown = require("./utils/generateMarkdown")
+
 // TODO: Create an array of questions for user input
 const questions = [
   {
@@ -39,13 +40,14 @@ const questions = [
     name: "collaborators",
   },
   {
-    type: "input",
+    type: "list",
     message: "What is the license you would like to use for this project?",
     name: "license",
+    choices: []
   },
   {
     type: "input",
-    message: "What languages did you use for this project?",
+    message: "What languages did you use for this project?(for badges)",
     name: "badges",
   },
   {
@@ -63,13 +65,18 @@ const questions = [
     message: "How can devs test this app?",
     name: "tests",
   },
+  {
+    type: "input",
+    message: "Enter your GitHub user name:",
+    name: "questions",
+  },
 ];
 
 inquirer
   .prompt(questions)
   .then((responses) => {
     console.log(responses);
-
+    generateMarkdown(responses)
 });
 
 // TODO: Create a function to write README file
@@ -83,7 +90,26 @@ function writeToFile(fileName, data) {
 }
 
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+  try {
+        const userResponses = await inquirer.prompt(questions);
+        console.log("Your responses: ", userResponses);
+        console.log("Responses received! Retrieving GitHub user info");
+    
+        const userInfo = await api.getUser(userResponses);
+        console.log("Your GitHub user info: ", userInfo);
+    
+        console.log("Generating your README next...")
+        const markdown = generateMarkdown(userResponses, userInfo);
+        console.log(markdown);
+    
+        await writeFileAsync('ExampleREADME.md', markdown);
+
+    } catch (error) {
+        console.log(error);
+    }
+};
+
 
 // Function call to initialize app
 init();
