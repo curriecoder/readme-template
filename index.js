@@ -13,6 +13,11 @@ const questions = [
   },
   {
     type: "input",
+    name: "email",
+    message: "Please enter your email: ",
+  },
+  {
+    type: "input",
     message: "What is the name of your GitHub repo?",
     name: "repo",
   },
@@ -26,11 +31,6 @@ const questions = [
     message:
       "Provide a short description explaining the what, why, and how of your project. What was your motivation? Why did you build this project? What problem does it solve? What did you learn?",
     name: "description",
-  },
-  {
-    type: "input",
-    message: "Table of contents for longer projects.",
-    name: "contents",
   },
   {
     type: "input",
@@ -55,20 +55,13 @@ const questions = [
     message: "What is the license you would like to use for this project?",
     name: "license",
     choices: [
-      "Apache License 2.0",
-      "Boost Software License 1.0",
-      "GNU AGPLv3",
-      "GNU GPLv3",
-      "GNU LGPLv3",
-      "MIT License",
-      "Mozilla Public License 2.0",
-      "The Unlicense",
+      "Apache",
+      "Boost",
+      "GNU",
+      "MIT",
+      "Mozilla",
+      "Unlicense",
     ],
-  },
-  {
-    type: "input",
-    message: "What languages did you use for this project?(for badges)",
-    name: "badges",
   },
   {
     type: "input",
@@ -114,7 +107,6 @@ async function init() {
     console.log(markdown);
 
     await writeFileAsync(userResponses.title, markdown);
-    
   } catch (error) {
     console.log(error);
   }

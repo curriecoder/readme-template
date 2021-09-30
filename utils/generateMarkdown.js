@@ -24,14 +24,14 @@ function generateMarkdown(userResponses, userInfo) {
   }
 
   let writeMarkDown = `# ${userResponses.title}
-  ![Badge for GitHub repo top language](https://img.shields.io/github/languages/top/${userResponses.username}/${userResponses.repo}?style=flat&logo=appveyor) ![Badge for GitHub last commit](https://img.shields.io/github/last-commit/${userResponses.username}/${userResponses.repo}?style=flat&logo=appveyor)
+  ![Badge for GitHub repo top language](https://img.shields.io/github/languages/top/${userResponses.username}/${userResponses.repo}?style=flat&logo=appveyor)![badge](https://img.shields.io/badge/license-${userResponses.license}-brightgreen)
   Check out the badges hosted by [shields.io](https://shields.io/).
   
   ## Description 
   ${userResponses.description}
   
 
-  `
+  `;
 
   // Add Table of Contents to markdown
   writeMarkDown += draftToC;
@@ -60,7 +60,9 @@ function generateMarkdown(userResponses, userInfo) {
   
   writeMarkDown +=
   
-  `## Usage 
+  `
+  
+  ## Usage 
   
   *Instructions and examples for use:*
   
@@ -71,7 +73,9 @@ function generateMarkdown(userResponses, userInfo) {
   // Optional Contributing section
   if (userResponses.contributing !== "") {
   
-  `## Contributing
+  `
+  
+  ## Contributing
   
   *If you would like to contribute it, you can follow these guidelines for how to do so.*
   
@@ -83,7 +87,9 @@ function generateMarkdown(userResponses, userInfo) {
   if (userResponses.tests !== '') {
   
   writeMarkDown +=
-  `## Tests
+  `
+  
+  ## Tests
   
   *Tests for application and how to run them:*
   
@@ -93,7 +99,9 @@ function generateMarkdown(userResponses, userInfo) {
 
   // License section is required
   writeMarkDown +=
-  `## License
+  `
+  
+  ## License
   
   ${userResponses.license}`;
 
@@ -109,13 +117,12 @@ function generateMarkdown(userResponses, userInfo) {
   
   For any questions, contact me:
  
-  GitHub: [@${userInfo.login}](${userInfo.url})`;
+  GitHub: [@${userInfo.login}](${userInfo.url})
 
-  // If GitHub email is not null, add to Developer section
-  if (userInfo.email !== null) {
+  Email: ${userResponses.email}
   
-  draftDev +=
-  `Email: ${userInfo.email}`};
+  `
+
 
   // Add developer section to markdown
   writeMarkDown += draftDev;

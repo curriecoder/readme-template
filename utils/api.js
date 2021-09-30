@@ -1,3 +1,4 @@
+// Bringing in axios to handle api request.
 const axios = require("axios");
 
 // Handling GitHub api call with user input.
