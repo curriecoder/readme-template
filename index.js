@@ -1,8 +1,14 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const generateMarkdown = require("./utils/generateMarkdown");
+const api = require("./utils/api.js");
 
 const questions = [
+  {
+    type: "input",
+    message: "Enter your GitHub user name:",
+    name: "userName",
+  },
   {
     type: "input",
     message: "What is the title of your project?",
@@ -72,11 +78,6 @@ const questions = [
     message: "How can devs test this app?",
     name: "tests",
   },
-  {
-    type: "input",
-    message: "Enter your GitHub user name:",
-    name: "questions",
-  },
 ];
 
 inquirer.prompt(questions).then((userResponses) => {
@@ -93,24 +94,25 @@ function writeToFile(fileName, data) {
   });
 }
 
-function init() {
-  try {
-    const userResponses = await inquirer.prompt(questions);
-    console.log("Your responses: ", userResponses);
-    console.log("Responses received! Retrieving GitHub user info");
+// async function init() {
+//   try {
+//     const userResponses = await inquirer.prompt(questions);
+//     console.log("Your responses: ", userResponses);
+//     console.log("Responses received! Retrieving GitHub user info");
 
-    const userInfo = await api.getUser(userResponses);
-    console.log("Your GitHub user info: ", userInfo);
+//     const userInfo = await api.getUser(userResponses);
+//     console.log("Your GitHub user info: ", userInfo);
 
-    console.log("Generating your README.md");
-    const markdown = generateMarkdown(userResponses, userInfo);
-    console.log(markdown);
+//     console.log("Generating your README.md");
+//     const markdown = generateMarkdown(userResponses, userInfo);
+//     console.log(markdown);
 
-    await writeFileAsync("ExampleREADME.md", markdown);
-  } catch (error) {
-    console.log(error);
-  }
-}
+//     await writeFileAsync("ExampleREADME.md", markdown);
+    
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
 
 // Function call to initialize app
 init();
