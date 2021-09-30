@@ -103,7 +103,7 @@ function generateMarkdown(userResponses, userInfo) {
   
   ## License
   
-  ${userResponses.license}`;
+  This application is covered under the ${userResponses.license} license.`;
 
 
   // Questions
