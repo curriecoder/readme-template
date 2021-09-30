@@ -1,29 +1,34 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
-function renderLicenseBadge(license) {}
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
-function renderLicenseLink(license) {}
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-function renderLicenseSection(license) {}
+function generateMarkdown(userResponses, userInfo) {
+  const writeMarkDown =`# ${userResponses.title}
+  ![Badge for GitHub repo top language](https://img.shields.io/github/languages/top/${userResponses.username}/${userResponses.repo}?style=flat&logo=appveyor) ![Badge for GitHub last commit](https://img.shields.io/github/last-commit/${userResponses.username}/${userResponses.repo}?style=flat&logo=appveyor)
+  Check out the badges hosted by [shields.io](https://shields.io/).
+  
+  
+  ## Description 
+  
+  # ${userResponses.description}
 
-// TODO: Create a function to generate markdown for README
-function generateMarkdown(responses, userInfo) {
-  return `# ${responses.title}
-  # ${responses.description}
-  # ${responses.contents}
-  # ${responses.install}
-  # ${responses.instructions}
-  # ${responses.collaborators}
-  # ${responses.license}
-  # ${responses.badges}
-  # ${responses.features}
-  # ${responses.contributors}
-  # ${responses.tests}
-  # ${responses.questions}
+  # ${userResponses.contents}
+
+  # ${userResponses.install}
+  
+  # ${userResponses.instructions}
+  
+  # ${userResponses.collaborators}
+  
+  # ${userResponses.license}
+  
+  # ${userResponses.badges}
+  
+  # ${userResponses.features}
+  
+  # ${userResponses.contributors}
+  
+  # ${userResponses.tests}
+  
+  # ${userResponses.questions}
 `;
 }
 
