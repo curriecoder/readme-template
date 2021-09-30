@@ -13,7 +13,7 @@ function generateMarkdown(userResponses, userInfo) {
   * [Usage](#usage)`;
   }
 
-  if (userResponses.contributors !== "") {
+  if (userResponses.contributing !== "") {
     draftToC += `
   * [Contributing](#contributing)`;
   }
@@ -28,7 +28,7 @@ function generateMarkdown(userResponses, userInfo) {
   Check out the badges hosted by [shields.io](https://shields.io/).
   
   ## Description 
-  # ${userResponses.description}
+  ${userResponses.description}
   
 
   `
@@ -71,14 +71,14 @@ function generateMarkdown(userResponses, userInfo) {
   
   
   // Optional Contributing section
-  if (userResponses.contributors !== '') {
-  `
+  if (userResponses.contributing !== "") {
+    `
   
   ## Contributing
   
   *If you would like to contribute it, you can follow these guidelines for how to do so.*
   
-  ${userResponses.contributors}`
+  ${userResponses.contributing}`;
   };
   
 

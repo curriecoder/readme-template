@@ -11,9 +11,9 @@ const questions = [
     name: "username",
   },
   {
-    type: 'input',
+    type: "input",
     message: "What is the name of your GitHub repo?",
-    name: 'repo',
+    name: "repo",
   },
   {
     type: "input",
@@ -77,7 +77,7 @@ const questions = [
   {
     type: "input",
     message: "Instructions for how to contribute?",
-    name: "contributors",
+    name: "contributing",
   },
   {
     type: "input",
@@ -86,10 +86,6 @@ const questions = [
   },
 ];
 
-// inquirer.prompt(questions).then((userResponses) => {
-//   console.log(userResponses);
-//   generateMarkdown(userResponses);
-// });
 
 function writeToFile(fileName, data) {
   fs.writeFile(fileName, data, (err) => {
@@ -115,7 +111,7 @@ async function init() {
     const markdown = generateMarkdown(userResponses, userInfo);
     console.log(markdown);
 
-    await writeFileAsync("ExampleREADME.md", markdown);
+    await writeFileAsync(userResponses.title, markdown);
     
   } catch (error) {
     console.log(error);
