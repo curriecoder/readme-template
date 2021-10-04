@@ -73,6 +73,8 @@ function generateMarkdown(userResponses, userInfo) {
   // Optional Contributing section
   if (userResponses.contributing !== "") {
   
+  writeMarkDown +=
+
   `
   
   ## Contributing

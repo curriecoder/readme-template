@@ -1,6 +1,7 @@
 # readme-template
 
 Repo: https://github.com/curriecoder/readme-template
+Walkthrough: https://youtu.be/Pr3O_sIg0W4
 
 ## Description
 
