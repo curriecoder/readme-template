@@ -106,7 +106,7 @@ async function init() {
     const markdown = generateMarkdown(userResponses, userInfo);
     console.log(markdown);
 
-    await writeFileAsync(`${userResponses.title}`.md, markdown);
+    await writeFileAsync(`${userResponses.title}.md`, markdown);
   } catch (error) {
     console.log(error);
   }
